@@ -1,0 +1,132 @@
+/* styles/Carrito.module.css */
+
+.container {
+  max-width: var(--max-width);
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+
+.container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: 1rem;
+}
+
+.emptyCart {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.emptyCart p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.goShoppingButton {
+  background-color: var(--color-texto-principal);
+  color: var(--color-fondo);
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.goShoppingButton:hover {
+  background-color: #333;
+}
+
+.cartGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+}
+
+.cartItem {
+  display: flex;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.itemImage img {
+  border-radius: 4px;
+}
+
+.itemDetails h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.itemActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.quantityInput {
+  width: 60px;
+  padding: 0.5rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  color: var(--color-texto-secundario);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cartSummary {
+  background-color: var(--color-superficie-clara);
+  padding: 2rem;
+  border-radius: 8px;
+  position: sticky;
+  top: 120px; /* Header height + some space */
+}
+
+.cartSummary h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: 1rem;
+}
+
+.summaryRow, .summaryTotal {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.summaryTotal {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-borde);
+}
+
+.checkoutButton {
+  width: 100%;
+  background-color: var(--color-texto-principal);
+  color: var(--color-fondo);
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .cartGrid {
+    grid-template-columns: 1fr;
+  }
+}

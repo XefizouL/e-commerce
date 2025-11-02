@@ -1,0 +1,85 @@
+.productDetailContainer {
+  max-width: var(--max-width);
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.productColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.imageColumn {
+  background-color: var(--color-superficie-clara);
+}
+
+/* Columna de Información Minimalista */
+.infoColumn h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-texto-secundario);
+  margin: 1.5rem 0;
+}
+
+.description {
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  color: var(--color-texto-secundario);
+  line-height: 1.8;
+}
+
+/* Botones de compra al estilo Ugmonk */
+.purchaseButtons {
+  display: grid;
+  gap: 1rem;
+}
+
+.addToCartButton {
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--color-texto-principal);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  background-color: var(--color-texto-principal);
+  color: var(--color-fondo);
+}
+
+.addToCartButton:hover {
+  background-color: #333;
+  border-color: #333;
+}
+
+/* Estilos para productos relacionados (opcional, pero recomendado) */
+.relatedProducts {
+  max-width: var(--max-width);
+  margin: 6rem auto;
+  padding: 4rem 2rem;
+  border-top: 1px solid var(--color-borde);
+  text-align: center;
+}
+.relatedProducts h2 { font-size: 1.8rem; margin-bottom: 3rem; }
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+.relatedCard { text-align: left; }
+.relatedCard img { background-color: var(--color-superficie-clara); margin-bottom: 1rem; }
+.relatedCard h3 { font-size: 1rem; font-weight: 500; }
+.relatedCard .price { font-size: 1rem; color: var(--color-texto-secundario); }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .productColumns { grid-template-columns: 1fr; gap: 3rem; }
+}

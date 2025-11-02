@@ -1,42 +1,32 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Paleta de Colores de Ugmonk */
+  --color-texto-principal: #1a1a1a;
+  --color-texto-secundario: #666666;
+  --color-fondo: #FFFFFF;
+  --color-superficie-clara: #F5F5F5; /* Para el fondo de las imágenes */
+  --color-borde: #E5E5E5;
+
+  /* Fuentes (Montserrat es una excelente opción, similar a la de Ugmonk) */
+  --fuente-principal: 'Montserrat', sans-serif;
+  
+  --max-width: 1200px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
+/* Reseteo y Base */
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: var(--fuente-principal);
+  background-color: var(--color-fondo);
+  color: var(--color-texto-principal);
+  line-height: 1.6;
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+a { color: inherit; text-decoration: none; }
+* { box-sizing: border-box; }
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 600; }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
