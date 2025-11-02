@@ -6,7 +6,6 @@ git push
 
 Este es un proyecto de e-commerce completamente funcional construido con Next.js y React. El objetivo principal es replicar una experiencia de compra moderna, minimalista y eficiente, inspirada en diseños de tiendas como Ugmonk.
 
-![Captura de Pantalla de la Tienda](https://i.imgur.com/LUD8f2A.jpeg) <!-- Opcional: Reemplaza esta URL con una captura de pantalla de tu proyecto terminado -->
 
 ## Funcionalidades Principales
 
