@@ -81,4 +81,8 @@ Code
 *   **Sección de Tecnologías:** Muestra rápidamente las herramientas que dominas.
 *   **Estructura del Proyecto:** Ayuda a otros (y a ti mismo) a entender cómo está organizado el código.
 
+<<<<<<< HEAD
 Cuando subas este archivo a GitHub, se renderizará automáticamente como la página principal de tu repositorio, dándole un aspecto muy profesional.
+=======
+Cuando subas este archivo a GitHub, se renderizará automáticamente como la página principal de tu repositorio, dándole un aspecto muy profesional.
+>>>>>>> 179fcab (Añadi descripcion de productos)

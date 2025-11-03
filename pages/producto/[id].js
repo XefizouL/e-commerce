@@ -4,11 +4,30 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { products } from '../../data/products';
 import Header from '../../components/Header';
 import styles from '../../styles/Producto.module.css';
 import { useCart } from '../../context/CartContext';
 
+// Componente de Acordeón
+const AccordionItem = ({ title, content }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className={styles.accordionItem}>
+      <button className={styles.accordionHeader} onClick={() => setIsOpen(!isOpen)}>
+        {title}
+        <span>{isOpen ? '−' : '+'}</span>
+      </button>
+      <div className={`${styles.accordionContent} ${isOpen ? styles.open : ''}`}>
+        <p>{content}</p>
+      </div>
+    </div>
+  );
+};
+
+// Componente Principal de la Página
 const ProductoPage = ({ product, relatedProducts }) => {
   const { addToCart } = useCart();
   const router = useRouter();
@@ -25,7 +44,7 @@ const ProductoPage = ({ product, relatedProducts }) => {
   return (
     <>
       <Head>
-        <title>{product.name} - ARAMÉ Clone</title>
+        <title>{product.name} - Aramé</title>
         <meta name="description" content={product.description} />
       </Head>
 
@@ -47,11 +66,20 @@ const ProductoPage = ({ product, relatedProducts }) => {
                 Añadir a la cesta
               </button>
             </div>
+
+            {product.details && (
+              <div className={styles.detailsContainer}>
+                {product.details.material && <AccordionItem title="Material" content={product.details.material} />}
+                {product.details.fit && <AccordionItem title="Talla y Ajuste" content={product.details.fit} />}
+                {product.details.dimensions && <AccordionItem title="Dimensiones" content={product.details.dimensions} />}
+                {product.details.capacity && <AccordionItem title="Capacidad" content={product.details.capacity} />}
+                {product.details.care && <AccordionItem title="Cuidados" content={product.details.care} />}
+              </div>
+            )}
           </div>
         </div>
       </main>
 
-      {/* --- SECCIÓN DE PRODUCTOS RELACIONADOS (SIN CAMBIOS) --- */}
       <section className={styles.relatedProducts}>
         <h2>Productos Relacionados</h2>
         <div className={styles.relatedGrid}>
@@ -71,25 +99,23 @@ const ProductoPage = ({ product, relatedProducts }) => {
 export default ProductoPage;
 
 
-// ----- VERSIÓN CORRECTA Y ÚNICA DE LAS FUNCIONES -----
+// ----- CÓDIGO RESTAURADO Y FUNCIONAL -----
 
-// 1. Next.js necesita saber qué rutas dinámicas existen
 export async function getStaticPaths() {
   const paths = products.map((product) => ({
     params: { id: product.id.toString() },
   }));
 
+  // Esta línea 'return' es la que faltaba o estaba incorrecta
   return { paths, fallback: false };
 }
 
-// 2. Para cada página, obtenemos los datos específicos de ese producto
 export async function getStaticProps({ params }) {
   const product = products.find(p => p.id.toString() === params.id);
   
-  // Filtramos para encontrar productos relacionados
   const relatedProducts = products.filter(
     p => p.category === product.category && p.id !== product.id
-  ).slice(0, 4); // Mostramos hasta 4 relacionados
+  ).slice(0, 4);
 
   return {
     props: {
