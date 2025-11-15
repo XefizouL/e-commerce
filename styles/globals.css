@@ -1,13 +1,15 @@
 :root {
-  /* Paleta de Colores de Ugmonk */
-  --color-texto-principal: #1a1a1a;
-  --color-texto-secundario: #666666;
-  --color-fondo: #FFFFFF;
-  --color-superficie-clara: #F5F5F5; /* Para el fondo de las imágenes */
-  --color-borde: #E5E5E5;
+  /* Nueva Paleta de Colores: Elegante y Cálida */
+  --color-fondo: #F5F3EF; /* Un beige muy claro y sofisticado */
+  --color-texto-principal: #2a2a2a; /* Un negro muy oscuro, pero no puro */
+  --color-texto-secundario: #6B6B6B;
+  --color-superficie: #FFFFFF; /* Blanco puro para las tarjetas, para que resalten */
+  --color-borde: #EAE3D9; /* Un borde que complementa el fondo */
+  --color-acento: #B08D73; /* Un tono tierra sutil para acentos */
 
-  /* Fuentes (Montserrat es una excelente opción, similar a la de Ugmonk) */
-  --fuente-principal: 'Montserrat', sans-serif;
+  /* Fuentes Refinadas */
+  --fuente-serif: 'Playfair Display', serif; /* Para títulos y logos */
+  --fuente-sans: 'Montserrat', sans-serif; /* Para el cuerpo del texto y UI */
   
   --max-width: 1200px;
 }
@@ -16,7 +18,7 @@
 body {
   padding: 0;
   margin: 0;
-  font-family: var(--fuente-principal);
+  font-family: var(--fuente-sans);
   background-color: var(--color-fondo);
   color: var(--color-texto-principal);
   line-height: 1.6;
@@ -30,3 +32,14 @@ a { color: inherit; text-decoration: none; }
 img { max-width: 100%; height: auto; display: block; }
 h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 600; }
 
+/* Clase para el header transparente, ahora con texto oscuro */
+.header-overlay {
+  background-color: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  color: var(--color-texto-principal); /* El texto será oscuro sobre fondo claro */
+}
+
+.header-overlay a {
+  color: var(--color-texto-principal) !important;
+}

@@ -20,10 +20,12 @@ const CarritoPage = () => {
       <Head>
         <title>Tu Carrito de Compras</title>
       </Head>
+
       <Header />
+
       <main className={styles.container}>
         <h1>Tu Carrito</h1>
-        
+
         {cartItems.length === 0 ? (
           <div className={styles.emptyCart}>
             <p>Tu carrito está vacío.</p>
@@ -33,25 +35,47 @@ const CarritoPage = () => {
           </div>
         ) : (
           <div className={styles.cartGrid}>
+            
             <div className={styles.cartItems}>
               {cartItems.map(item => (
                 <div key={item.id} className={styles.cartItem}>
+                  
                   <div className={styles.itemImage}>
-                    <Image src={item.image} alt={item.name} width={100} height={100} objectFit="cover" />
+                    {/* Imagen corregida */}
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      width={100}
+                      height={100}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                    />
                   </div>
+
                   <div className={styles.itemDetails}>
                     <h3>{item.name}</h3>
                     <p>${item.price.toFixed(2)}</p>
+
                     <div className={styles.itemActions}>
                       <label>Cantidad:</label>
-                      <input 
-                        type="number" 
-                        min="1" 
-                        value={item.quantity} 
-                        onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
+
+                      <input
+                        type="number"
+                        min="1"
+                        value={item.quantity}
+                        onChange={(e) =>
+                          updateQuantity(item.id, parseInt(e.target.value))
+                        }
                         className={styles.quantityInput}
                       />
-                      <button onClick={() => removeFromCart(item.id)} className={styles.removeButton}>
+
+                      <button
+                        onClick={() => removeFromCart(item.id)}
+                        className={styles.removeButton}
+                      >
                         Eliminar
                       </button>
                     </div>
@@ -62,20 +86,27 @@ const CarritoPage = () => {
 
             <div className={styles.cartSummary}>
               <h2>Resumen del Pedido</h2>
+
               <div className={styles.summaryRow}>
                 <span>Subtotal</span>
                 <span>${totalPrice.toFixed(2)}</span>
               </div>
+
               <div className={styles.summaryRow}>
                 <span>Envío</span>
                 <span>Gratis</span>
               </div>
+
               <div className={styles.summaryTotal}>
                 <span>Total</span>
                 <span>${totalPrice.toFixed(2)}</span>
               </div>
-              <button className={styles.checkoutButton}>Finalizar Compra</button>
+
+              <button className={styles.checkoutButton}>
+                Finalizar Compra
+              </button>
             </div>
+
           </div>
         )}
       </main>

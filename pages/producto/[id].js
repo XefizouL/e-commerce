@@ -27,14 +27,12 @@ const AccordionItem = ({ title, content }) => {
   );
 };
 
-// Componente Principal de la Página
+// Página principal del producto
 const ProductoPage = ({ product, relatedProducts }) => {
   const { addToCart } = useCart();
   const router = useRouter();
 
-  if (!product) {
-    return <div>Producto no encontrado.</div>;
-  }
+  if (!product) return <div>Producto no encontrado.</div>;
 
   const handleAddToCart = () => {
     addToCart(product);
@@ -44,7 +42,8 @@ const ProductoPage = ({ product, relatedProducts }) => {
   return (
     <>
       <Head>
-        <title>{product.name} - Aramé</title>
+        {/* Título corregido con template literal */}
+        <title>{`${product.name} - Aramé`}</title>
         <meta name="description" content={product.description} />
       </Head>
 
@@ -52,8 +51,20 @@ const ProductoPage = ({ product, relatedProducts }) => {
 
       <main className={styles.productDetailContainer}>
         <div className={styles.productColumns}>
+
+          {/* Imagen principal */}
           <div className={styles.imageColumn}>
-            <Image src={product.image} alt={product.name} width={600} height={600} layout="responsive" objectFit="contain" />
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={600}
+              height={600}
+              style={{
+                width: '100%',
+                height: 'auto',
+                objectFit: 'contain'
+              }}
+            />
           </div>
 
           <div className={styles.infoColumn}>
@@ -69,23 +80,45 @@ const ProductoPage = ({ product, relatedProducts }) => {
 
             {product.details && (
               <div className={styles.detailsContainer}>
-                {product.details.material && <AccordionItem title="Material" content={product.details.material} />}
-                {product.details.fit && <AccordionItem title="Talla y Ajuste" content={product.details.fit} />}
-                {product.details.dimensions && <AccordionItem title="Dimensiones" content={product.details.dimensions} />}
-                {product.details.capacity && <AccordionItem title="Capacidad" content={product.details.capacity} />}
-                {product.details.care && <AccordionItem title="Cuidados" content={product.details.care} />}
+                {product.details.material && (
+                  <AccordionItem title="Material" content={product.details.material} />
+                )}
+                {product.details.fit && (
+                  <AccordionItem title="Talla y Ajuste" content={product.details.fit} />
+                )}
+                {product.details.dimensions && (
+                  <AccordionItem title="Dimensiones" content={product.details.dimensions} />
+                )}
+                {product.details.capacity && (
+                  <AccordionItem title="Capacidad" content={product.details.capacity} />
+                )}
+                {product.details.care && (
+                  <AccordionItem title="Cuidados" content={product.details.care} />
+                )}
               </div>
             )}
           </div>
         </div>
       </main>
 
+      {/* Productos relacionados */}
       <section className={styles.relatedProducts}>
         <h2>Productos Relacionados</h2>
+
         <div className={styles.relatedGrid}>
           {relatedProducts.map(p => (
             <Link key={p.id} href={`/producto/${p.id}`} className={styles.relatedCard}>
-              <Image src={p.image} alt={p.name} width={250} height={250} objectFit="cover" />
+              <Image
+                src={p.image}
+                alt={p.name}
+                width={250}
+                height={250}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  objectFit: 'cover'
+                }}
+              />
               <h3>{p.name}</h3>
               <p className={styles.price}>${p.price.toFixed(2)}</p>
             </Link>
@@ -98,29 +131,24 @@ const ProductoPage = ({ product, relatedProducts }) => {
 
 export default ProductoPage;
 
-
-// ----- CÓDIGO RESTAURADO Y FUNCIONAL -----
-
+// Generar paths estáticos
 export async function getStaticPaths() {
   const paths = products.map((product) => ({
     params: { id: product.id.toString() },
   }));
 
-  // Esta línea 'return' es la que faltaba o estaba incorrecta
   return { paths, fallback: false };
 }
 
+// Obtener props del producto
 export async function getStaticProps({ params }) {
   const product = products.find(p => p.id.toString() === params.id);
-  
-  const relatedProducts = products.filter(
-    p => p.category === product.category && p.id !== product.id
-  ).slice(0, 4);
+
+  const relatedProducts = products
+    .filter(p => p.category === product.category && p.id !== product.id)
+    .slice(0, 4);
 
   return {
-    props: {
-      product,
-      relatedProducts,
-    },
+    props: { product, relatedProducts },
   };
 }

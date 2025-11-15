@@ -1,12 +1,19 @@
+// DESPUÉS (LA SOLUCIÓN MODERNA Y CORRECTA)
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   
   images: {
-    domains: ['i.imgur.com'],
+    // Esta es la nueva forma, más segura y recomendada
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.imgur.com',
+        port: '',
+        pathname: '/**', // Permite cualquier ruta dentro de i.imgur.com
+      },
+    ],
   },
 };
 
-// ----- CORRECCIÓN AQUÍ -----
-// Cambiamos 'module.exports = nextConfig' por 'export default nextConfig'
 export default nextConfig;
